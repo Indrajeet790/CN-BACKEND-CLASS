@@ -7,9 +7,27 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// render first route
-app.get("/profile", function (req, res) {
-  return res.render("home");
+// create a variable
+var contactList = [
+  {
+    name: "vijay",
+    phone: "1223345",
+  },
+  {
+    name: "shyam",
+    phone: "3456789",
+  },
+  {
+    name: "tony stark",
+    phone: "34567890",
+  },
+];
+// render first route contact list
+app.get("/", function (req, res) {
+  return res.render("home", {
+    title: "My ContactList",
+    Contact_list: contactList,
+  });
 });
 
 app.listen(port, function (err) {
