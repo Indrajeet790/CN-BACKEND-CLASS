@@ -1,6 +1,15 @@
 const express = require("express");
 const port = 8000;
+const path = require("path");
 const app = express();
+
+// we are using ejs
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+app.get("/profile", function (req, res) {
+  return res.render("home");
+});
 
 app.listen(port, function (err) {
   if (err) {
