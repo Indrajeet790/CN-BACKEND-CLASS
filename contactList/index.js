@@ -7,6 +7,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+// render first route
 app.get("/profile", function (req, res) {
   return res.render("home");
 });
