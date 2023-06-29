@@ -6,9 +6,12 @@ const app = express();
 // we are using ejs
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.use(express.static(__dirname + "/assets"));
 
 // add middleware
 app.use(express.urlencoded());
+// use middleware for static file
+app.use(express.static("assets"));
 
 // create a variable
 var contactList = [
@@ -46,6 +49,19 @@ app.post("/create-contact", function (req, res) {
   //   phone: req.body.phone,
   // });
   contactList.push(req.body);
+  return res.redirect("back");
+});
+// delete contact
+app.get("/delete-contact", function (req, res) {
+  // GET THE QUERY FROM THE URL
+  console.log(req.query);
+  let phone = req.query.phone;
+
+  let contactIndex = contactList.findIndex((contact) => contact.phone == phone);
+
+  if (contactIndex != -1) {
+    contactList.splice(contactIndex, 1);
+  }
   return res.redirect("back");
 });
 
