@@ -47,13 +47,17 @@ app.get("/practice", function (req, res) {
 });
 
 // create a route for form to create contact and form
-app.post("/create-contact", function (req, res) {
-  // contactList.push({
-  //   name: req.body.name,
-  //   phone: req.body.phone,
-  // });
-  contactList.push(req.body);
-  return res.redirect("back");
+app.post("/create-contact", async function (req, res) {
+  try {
+    const newContact = await Contact.create({
+      name: req.body.name,
+      phone: req.body.phone,
+    });
+    console.log(newContact);
+    return res.redirect("back");
+  } catch (err) {
+    console.log(err);
+  }
 });
 // delete contact
 app.get("/delete-contact", function (req, res) {
