@@ -1,15 +1,31 @@
 <html>
   <head>
     <title><%=locals.title%></title>
+
+    <link rel="stylesheet" href="/css/home.css" />
+    <!-- font-Awesome -->
+    <script
+      src="https://kit.fontawesome.com/173bd74bb1.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <h1>Contact List</h1>
-    <div>
+    <h1 id="page-heading">
+      <i class="fa-sharp fa-solid fa-address-book"></i>My Contact List
+    </h1>
+    <div id="contact-list-container">
       <ul>
         <%for(let i of Contact_list){%>
-        <li>
-          <p><%=i.name%></p>
-          <p><%=i.phone%></p>
+        <li class="contact">
+          <div class="details">
+            <p><%=i.name%></p>
+            <p><%=i.phone%></p>
+          </div>
+          <div class="delete-button">
+            <a href="/delete-contact/?phone=<%=i.phone%>"
+              ><i class="fa-sharp fa-solid fa-square-xmark"></i
+            ></a>
+          </div>
         </li>
         <%}%>
       </ul>
@@ -21,5 +37,7 @@
       <input type="number" name="phone" placeholder="phone" />
       <button type="submit">Add contact</button>
     </form>
+
+    <script src="/js/home.js"></script>
   </body>
 </html>
